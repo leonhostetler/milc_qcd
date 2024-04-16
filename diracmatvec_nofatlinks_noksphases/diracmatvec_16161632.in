@@ -1,0 +1,7 @@
+prompt 0
+nx 16
+ny 16
+nz 16
+nt 32
+number_of_pbp_masses 1
+reload_serial ../ckpoint_lat.4000
