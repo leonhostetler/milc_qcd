@@ -33,7 +33,7 @@ To run the test with the 16^3x32 sample lattice, do:
 
 Note that MILC stores the field by parity, so when printing out a field, the result will be all sites of one parity followed by all sites of the other parity. Parity refers to checkerboard parity i.e. each site is black or white (even or odd). I have added some scripts in diracmatvec_util/ to do basic cleaning, conversion, and comparison between MILC and PETSc solution vectors.
 
-
+WARNING: diracmatvec_nofatlinks_noksphases and diracmatvec_naive_noksphases have not been tested against PETSc since starting this repository. It's possible that I accidentally copied old versions that do not work, so take it with a grain of salt, and preferably check the output yourself.
 
 
 
