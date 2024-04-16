@@ -197,8 +197,8 @@ main( int argc, char **argv )
     fn = get_fm_links(fn_links);
 
     // Replace fat links with regular links
-    su3_matrix *links = create_G_from_site();
-    fn[0]->fat = links;
+    //su3_matrix *links = create_G_from_site();
+    //fn[0]->fat = links;
 
     // Compute Dslash*src
     dslash_fn_field(src, dest, EVENANDODD, fn[0]);

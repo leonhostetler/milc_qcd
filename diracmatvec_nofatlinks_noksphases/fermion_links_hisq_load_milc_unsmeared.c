@@ -531,11 +531,11 @@ load_X_from_W(info_t *info, fn_links_t *fn, hisq_auxiliary_t *aux,
   int dir;
   site *s;
   su3_matrix *links2 = create_G_from_site();
-  for (dir=XUP; dir<=TUP; dir++){ // Scale by 9/8
-    FORALLSITES(i,s){ 
-		  scalar_mult_su3_matrix( links + 4*i + dir, 1.125, links2 + 4*i + dir );
-	  }
-  }
+  //for (dir=XUP; dir<=TUP; dir++){ // Scale by 9/8
+  //  FORALLSITES(i,s){ 
+	//	  scalar_mult_su3_matrix( links + 4*i + dir, 1.125, links2 + 4*i + dir );
+	//  }
+  //}
 
   FORALLFIELDSITES_OMP(i,default(shared)){
     memcpy(fat + 4*i, links2 + 4*i, 4*sizeof(su3_matrix));

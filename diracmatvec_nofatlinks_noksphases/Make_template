@@ -141,8 +141,11 @@ diracmatvec::
 
 
 
+#clean:
+#	-/bin/rm -f *.o quark_action.h gauge_action.h
+
 clean:
-	-/bin/rm -f *.o quark_action.h gauge_action.h
+	-/bin/rm -f *.o gauge_action.h
 
 # Rules for generic routines
 include ../generic/Make_template
