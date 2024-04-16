@@ -1,0 +1,6 @@
+prompt 0
+nx 16
+ny 16
+nz 16
+nt 32
+reload_serial ../ckpoint_lat.4000

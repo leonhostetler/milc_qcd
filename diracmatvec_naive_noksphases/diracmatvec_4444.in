@@ -1,0 +1,6 @@
+prompt 0
+nx 4
+ny 4
+nz 4
+nt 4
+reload_serial ../milc_4444.lat

@@ -1,0 +1,35 @@
+# This is not a standalone Makefile
+# It is intended to be included in other Makefiles
+
+# It defines standard ccmbinations of generic object files for building code
+# These definitions are intended to apply to all builds.
+# If you want to customize a build, this list can be used as a starting point
+# for making changes.
+
+
+STANDARD_OBJECTS = \
+  field_utilities.o  \
+  gauge_utilities.o  \
+  io_helpers.o \
+  io_lat_utils.o \
+  make_lattice.o \
+  remap_stdio_from_args.o \
+  ranstuff.o
+
+GAUGE_OBJECTS = \
+  check_unitarity.o  \
+  io_lat4.o \
+  nersc_cksum.o \
+  path_product.o     \
+  reunitarize2.o \
+  d_plaq4.o
+
+KS_LINKS_OBJECTS = rephase.o 
+DSLASH_FN     = dslash_naivefield.o
+GAUGE_FORCE   = gauge_stuff.o
+
+HISQ_OBJECTS = \
+  ${KS_LINKS_OBJECTS} \
+  ${DSLASH_FN}
+
+
