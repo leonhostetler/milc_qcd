@@ -1,0 +1,24 @@
+prompt 0
+nx 16
+ny 16
+nz 16
+nt 32
+iseed 1234
+job_id test
+reload_serial ../ckpoint_lat.4000
+u0 1.0
+no_gauge_fix
+forget
+staple_weight 0
+ape_iter 0
+coordinate_origin 0 0 0 0
+time_bc periodic
+max_number_of_eigenpairs 0
+number_of_pbp_masses 0
+number_of_base_sources 0
+number_of_modified_sources 0
+number_of_sets 0
+number_of_quarks 0
+number_of_mesons 0
+number_of_baryons 0
+

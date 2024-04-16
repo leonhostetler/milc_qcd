@@ -1,0 +1,24 @@
+prompt 0
+nx 4
+ny 4
+nz 4
+nt 4
+iseed 1234
+job_id test
+reload_serial ../milc_4444.lat
+u0 1.0
+no_gauge_fix
+forget
+staple_weight 0
+ape_iter 0
+coordinate_origin 0 0 0 0
+time_bc periodic
+max_number_of_eigenpairs 0
+number_of_pbp_masses 0
+number_of_base_sources 0
+number_of_modified_sources 0
+number_of_sets 0
+number_of_quarks 0
+number_of_mesons 0
+number_of_baryons 0
+
