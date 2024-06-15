@@ -147,8 +147,8 @@ int ks_congrad_parity_gpu(su3_vector *t_src, su3_vector *t_dest,
   //qep.invert_param = &qip;
   qep.eig_type = ( blockSize > 1 ) ? QUDA_EIG_BLK_TR_LANCZOS : QUDA_EIG_TR_LANCZOS;  /* or QUDA_EIG_IR_ARNOLDI, QUDA_EIG_BLK_IR_ARNOLDI */
   qep.spectrum = QUDA_SPECTRUM_SR_EIG; /* Smallest Real. Other options: LM, SM, LR, SR, LI, SI */
-  qep.n_conv = param.eigen_param.Nvecs;
-  qep.n_ev_deflate = qep.n_conv;
+  qep.n_conv = param.eigen_param.Nvecs_in;
+  qep.n_ev_deflate = param.eigen_param.Nvecs;
   qep.n_ev = qep.n_conv;
   qep.n_kr = 2*qep.n_conv;
   //qep.block_size = blockSize;
