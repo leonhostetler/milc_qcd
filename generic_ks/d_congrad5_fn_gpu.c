@@ -134,12 +134,11 @@ int ks_congrad_parity_gpu(su3_vector *t_src, su3_vector *t_dest,
 #endif
 
   // Setup for deflation on GPU
-  if(param.eigen_param.Nvecs > 0 && qic->deflate){
+  //if(param.eigen_param.Nvecs > 0 && qic->deflate){
 
   //int parity = param.eigen_param.parity;
   int parity = qic->parity;
   int blockSize = 1;
-
 
   QudaEigParam qep = newQudaEigParam();
 
@@ -177,7 +176,7 @@ int ks_congrad_parity_gpu(su3_vector *t_src, su3_vector *t_dest,
   qep.io_parity_inflate = QUDA_BOOLEAN_TRUE;
 
   inv_args.eig_param = qep;
-  }
+  //}
 
   qudaInvert(MILC_PRECISION,
 	     quda_precision, 
