@@ -219,9 +219,11 @@ int svd3x3(double A[3][3][2], double *sigma, double U[3][3][2],
      /* gb_baryon_3pt.c */
      void apply_par_xport_3pt(ks_prop_field *dest, ks_prop_field *src,
                               int n, int dir[], int r0[], short doBW, su3_matrix *links);
+
+#endif /* GB_BARYON */
+
      /* gb_baryon_src.c */
      void apply_par_xport_src_v(su3_vector *dest, su3_vector *src,
                                 quark_source_sink_op *qss_op, su3_matrix *links);
-#endif /* GB_BARYON */
 
 #endif /* _GENERIC_KS_H */
