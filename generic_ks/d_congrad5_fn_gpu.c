@@ -173,7 +173,7 @@ int ks_congrad_parity_gpu(su3_vector *t_src, su3_vector *t_dest,
   strcpy( qep.vec_infile, param.ks_eigen_startfile );
   strcpy( qep.vec_outfile, param.ks_eigen_savefile );
   qep.save_prec = (MILC_PRECISION==2) ? QUDA_DOUBLE_PRECISION : QUDA_SINGLE_PRECISION;
-  qep.io_parity_inflate = QUDA_BOOLEAN_TRUE;
+  qep.io_parity_inflate = QUDA_BOOLEAN_FALSE;
 
   inv_args.eig_param = qep;
   //}
