@@ -1783,6 +1783,7 @@ int readin(int prompt) {
 #endif
 
 #if EIGMODE != EIGCG
+#ifndef USE_CG_GPU
   if(param.eigen_param.Nvecs > 0){
     /* malloc for eigenpairs */
     eigVal = (double *)malloc(param.eigen_param.Nvecs*sizeof(double));
@@ -1803,6 +1804,7 @@ int readin(int prompt) {
       node0_printf("WARNING: Gauge fixing does not readjust the eigenvectors");
     }
   }
+#endif
 #endif
 
   ENDTIME("readin");

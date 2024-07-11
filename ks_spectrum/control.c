@@ -148,7 +148,8 @@ int main(int argc, char *argv[])
       }
     
       /* Check the eigenvectors */
-
+// Don't check EVs if using QUDA
+#ifndef USE_CG_GPU
       /* Calculate and print the residues and norms of the eigenvectors */
       resid = (double *)malloc(Nvecs_curr*sizeof(double));
       node0_printf("Even site residuals\n");
@@ -156,12 +157,14 @@ int main(int argc, char *argv[])
       construct_eigen_odd(eigVec, eigVal, &param.eigen_param, fn);
       node0_printf("Odd site residuals\n");
       check_eigres( resid, eigVec, eigVal, Nvecs_curr, ODD, fn );
-      
+#endif 
+
       /* Unapply twisted boundary conditions on the fermion links and
 	 restore conventional KS phases and antiperiodic BC, if
 	 changed. */
       boundary_twist_fn(fn, OFF);
-      
+
+#ifndef USE_CG_GPU
       /* print eigenvalues of iDslash */
       node0_printf("The above were eigenvalues of -Dslash^2 in MILC normalization\n");
       node0_printf("Here we also list eigenvalues of iDslash in continuum normalization\n");
@@ -176,6 +179,7 @@ int main(int argc, char *argv[])
       }
       
       ENDTIME("calculate Dirac eigenpairs");
+#endif
 #endif
     }
     
