@@ -100,7 +100,7 @@ int ks_eigensolve_QUDA( su3_vector ** eigVec,
   qip.input_location = QUDA_CPU_FIELD_LOCATION;
   qip.output_location = QUDA_CPU_FIELD_LOCATION;
 
-  qip.sp_pad = 0;
+  //qip.sp_pad = 0;
 
   qip.native_blas_lapack = QUDA_BOOLEAN_TRUE;
   

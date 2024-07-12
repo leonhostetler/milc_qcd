@@ -344,7 +344,7 @@ typedef struct {
   char diagAlg[10];
   int parity; 
 } ks_eigen_param;
-#elif defined(USE_EIG_QUDA)
+#elif defined(USE_EIG_GPU)
 #define ks_eigensolve ks_eigensolve_QUDA
 typedef struct {
   int Nvecs ; /* number of eigenvectors */
@@ -354,7 +354,9 @@ typedef struct {
   int Nkr; /* size of the Krylov subspace */
   ks_eigen_poly poly; /* Preconditioning polynomial */
   int blockSize; /* block size for block variant eigensolvers */
-  int parity; 
+  int parity;
+  double reliable_delta;
+  double tol_restart; 
 } ks_eigen_param;
 #else
 #define ks_eigensolve ks_eigensolve_Kalkreuter_Ritz

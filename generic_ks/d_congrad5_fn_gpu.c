@@ -133,6 +133,9 @@ int ks_congrad_parity_gpu(su3_vector *t_src, su3_vector *t_dest,
   inv_args.tadpole = u0;
 #endif
 
+  inv_args.reliable_delta = param.eigen_param.reliable_delta;
+  inv_args.tol_restart = param.eigen_param.tol_restart;
+
   // Setup for deflation on GPU
   //if(param.eigen_param.Nvecs > 0 && qic->deflate){
 

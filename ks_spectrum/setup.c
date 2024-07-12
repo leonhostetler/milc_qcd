@@ -250,6 +250,11 @@ int readin(int prompt) {
       /* allow file to have more eigenpairs than will be used for deflation--needed for quda */
       IF_OK status += get_i(stdin, prompt,"file_number_of_eigenpairs", &param.eigen_param.Nvecs_in);
 
+#if defined(USE_EIG_GPU)
+      IF_OK status += get_f(stdin, prompt,"reliable_delta", &param.eigen_param.reliable_delta);
+      IF_OK status += get_f(stdin, prompt,"tol_restart", &param.eigen_param.tol_restart);
+#endif
+
       /* eigenvector input */
       IF_OK status += ask_starting_ks_eigen(stdin, prompt, &param.ks_eigen_startflag,
 					    param.ks_eigen_startfile);
@@ -261,6 +266,7 @@ int readin(int prompt) {
       /* If we are reading in eigenpairs, we don't regenerate them */
 
 #if EIGMODE != EIGCG
+#ifndef USE_EIG_GPU
       if(param.ks_eigen_startflag == FRESH){
 
 	/*------------------------------------------------------------*/
@@ -304,7 +310,7 @@ int readin(int prompt) {
 	param.eigen_param.tol = 0;
 	param.eigen_param.error_decr = 0.0;
       }
-
+#endif // ifndef USE_EIG_GPU
 #else
 
       /* for eigcg */
