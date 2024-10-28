@@ -193,6 +193,7 @@ max_cg_iterations ${max_cg_iterations}
 max_cg_restarts 5
 check yes
 momentum_twist 0 0 0
+precision ${precision}
 
 source 2
 
