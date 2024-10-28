@@ -124,7 +124,7 @@ error_for_propagator ${error_for_propagator[$m]}
 rel_error_for_propagator 0
 
 fresh_ksprop
-save_serial_fm_ksprop ks.test.l4448_m${mass[m]}_t0_x0_y0_z0
+save_serial_scidac_ksprop ks.test.l4448_m${mass[m]}_t0_x0_y0_z0
 
 EOF
 
