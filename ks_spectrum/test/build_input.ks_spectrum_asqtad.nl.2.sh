@@ -58,6 +58,11 @@ forget
 staple_weight 0
 ape_iter 0
 coordinate_origin 0 0 0 0
+time_bc antiperiodic
+
+# Eigenpairs
+
+max_number_of_eigenpairs 0
 
 # Chiral condensate and related measurements
 
@@ -70,6 +75,7 @@ number_of_base_sources 3
 # base source 0
 
 even_wall
+field_type KS
 subset full
 t0 ${t0}
 source_label E
@@ -78,6 +84,7 @@ forget_source
 # base source 1
 
 evenandodd_wall
+field_type KS
 subset full
 t0 ${t0}
 source_label q
@@ -86,6 +93,7 @@ forget_source
 # base source 2
 
 evenminusodd_wall
+field_type KS
 subset full
 t0 ${t0}
 source_label o
@@ -108,11 +116,12 @@ number_of_sets 3
 
 # Parameters for set 0
 
+set_type multimass
+inv_type UML
 max_cg_iterations ${max_cg_iterations}
 max_cg_restarts 5
 check yes
 momentum_twist 0 0 0
-time_bc antiperiodic
 precision ${precision}
 
 source 0
@@ -144,11 +153,12 @@ cat  <<EOF
 
 # Parameters for set 1
 
+set_type multimass
+inv_type UML
 max_cg_iterations ${max_cg_iterations}
 max_cg_restarts 5
 check yes
 momentum_twist 0 0 0
-time_bc antiperiodic
 precision ${precision}
 
 source 1
@@ -180,11 +190,12 @@ done
 
 cat  <<EOF
 
+set_type multimass
+inv_type UML
 max_cg_iterations ${max_cg_iterations}
 max_cg_restarts 5
 check yes
 momentum_twist 0 0 0
-time_bc antiperiodic
 precision ${precision}
 
 source 2

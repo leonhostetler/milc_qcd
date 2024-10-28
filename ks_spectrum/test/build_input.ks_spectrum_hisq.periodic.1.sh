@@ -58,6 +58,11 @@ forget
 staple_weight 0
 ape_iter 0
 coordinate_origin 0 0 0 0
+time_bc periodic
+
+# Eigenpairs
+
+max_number_of_eigenpairs 0
 
 # Chiral condensate and related measurements
 
@@ -70,6 +75,7 @@ number_of_base_sources 1
 # base source 0
 
 point
+field_type KS
 subset full
 origin 0 0 0 0
 source_label d
@@ -91,11 +97,12 @@ number_of_sets 1
 
 # Parameters for set 0
 
+set_type multimass
+inv_type UML
 max_cg_iterations ${max_cg_iterations}
 max_cg_restarts 5
 check yes
 momentum_twist 0 0 0
-time_bc periodic
 precision ${precision}
 
 source 0

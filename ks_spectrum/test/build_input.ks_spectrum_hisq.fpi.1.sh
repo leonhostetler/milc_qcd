@@ -112,6 +112,7 @@ number_of_sets 2
 # Parameters for set 0
 
 set_type multimass
+inv_type UML
 max_cg_iterations ${max_cg_iterations}
 max_cg_restarts 5
 check yes
@@ -148,6 +149,7 @@ cat  <<EOF
 # Parameters for set 1
 
 set_type multimass
+inv_type UML
 max_cg_iterations ${max_cg_iterations}
 max_cg_restarts 5
 check yes

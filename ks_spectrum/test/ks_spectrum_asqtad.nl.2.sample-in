@@ -118,7 +118,6 @@ rel_error_for_propagator 0
 fresh_ksprop
 forget_ksprop
 
-
 set_type multimass
 inv_type UML
 max_cg_iterations 300
