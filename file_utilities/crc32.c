@@ -200,6 +200,9 @@ uLong crc32(uLong crc, const unsigned char *buf, size_t len)
     return crc ^ 0xffffffffL;
 }
 
+// define this if you want to import the function crc32 into other executables
+#ifndef CRC_FUNCTION_ONLY
+
 #include <stdio.h>
 
 int main(int argc, char *argv[]){
@@ -229,3 +232,5 @@ int main(int argc, char *argv[]){
   printf("\ncrc32 = %lu\n",crc);
   return 0;
 }
+
+#endif // #ifndef CRC_FUNCTION_ONLY
