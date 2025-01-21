@@ -570,21 +570,14 @@ initialize_machine(int *argc, char ***argv)
   }
   remove_from_args(argc, argv, first, last);
 
-
   /* Set error handler for this job */
-
-  /* Note: with MPI-2 MPI_Comm_create_errhandler and
-     MPI_Comm_set_errorhandler are preferred, but we keep MPI_Attr_get
-     until MPI-2 is more widely available */ 
-  flag = MPI_Errhandler_create(err_func, &errhandler);
+  flag = MPI_Comm_create_errhandler(err_func, &errhandler);
   if(flag != MPI_SUCCESS) err_func(&MPI_COMM_THISJOB, &flag);
-  flag = MPI_Errhandler_set(MPI_COMM_THISJOB, errhandler);
+  flag = MPI_Comm_set_errhandler(MPI_COMM_THISJOB, errhandler);
   if(flag != MPI_SUCCESS) err_func(&MPI_COMM_THISJOB, &flag);
 
   /* get the number of message types */
-  /* Note: with MPI-2 MPI_Comm_get_attr is preferred,
-     but we keep MPI_Attr_get until MPI-2 is more widely available */ 
-  flag = MPI_Attr_get(MPI_COMM_THISJOB, MPI_TAG_UB, &tag_ub, &found);
+  flag = MPI_Comm_get_attr(MPI_COMM_THISJOB, MPI_TAG_UB, &tag_ub, &found);
   if(flag != MPI_SUCCESS) err_func(&MPI_COMM_THISJOB, &flag);
   if(found == 0){
     num_gather_ids = 1024;
@@ -1980,7 +1973,10 @@ do_gather(msg_tag *mtag)  /* previously returned by start_gather_site */
   /* for each node which has neighbors of my sites */
   for(i=0; i<mtag->nrecvs; i++) {
     /* post receive */
-    MPI_Irecv( mbuf[i].msg_buf, mbuf[i].msg_size+CRCBYTES, MPI_BYTE, MPI_ANY_SOURCE,
+//    MPI_Irecv( mbuf[i].msg_buf, mbuf[i].msg_size+CRCBYTES, MPI_BYTE, MPI_ANY_SOURCE,
+//	       GATHER_ID(mtag->ids[mbuf[i].id_offset]), MPI_COMM_THISJOB,
+//	       &mbuf[i].msg_req );
+    MPI_Irecv( mbuf[i].msg_buf, mbuf[i].msg_size+CRCBYTES, MPI_BYTE, mbuf[i].msg_node,
 	       GATHER_ID(mtag->ids[mbuf[i].id_offset]), MPI_COMM_THISJOB,
 	       &mbuf[i].msg_req );
   }
@@ -2251,7 +2247,7 @@ declare_gather_field(
 */
 msg_tag *
 start_gather_field(
-  void * field,		/* which field? Pointer returned by malloc() */
+  const void * const field,		/* which field? Pointer returned by malloc() */
   size_t size,		/* size in bytes of the field (eg sizeof(su3_vector))*/
   int index,		/* direction to gather from. eg XUP - index into
 			   neighbor tables */

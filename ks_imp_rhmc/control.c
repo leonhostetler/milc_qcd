@@ -95,11 +95,9 @@ main( int argc, char **argv )
 	
 	/* call gauge_variable fermion_variable measuring routines */
 	/* results are printed in output file */
-	rephase(OFF);
 	STARTTIME;
-	g_measure( );
+	g_measure_ks( );
 	ENDTIME("do gauge measurement");
-	rephase(ON);
 #ifdef MILC_GLOBAL_DEBUG
 #if ( FERM_ACTION == HISQ || FERM_ACTION == HYPISQ )
         g_measure_plaq( );
@@ -151,15 +149,9 @@ main( int argc, char **argv )
 #ifdef HISQ_SVD_COUNTER
       printf("hisq_svd_counter = %d\n",hisq_svd_counter);
 #endif
-#ifdef HYPISQ_SVD_COUNTER
-      printf("hypisq_svd_counter = %d\n",hypisq_svd_counter);
-#endif
       
 #ifdef HISQ_FORCE_FILTER_COUNTER
       printf("hisq_force_filter_counter = %d\n",hisq_force_filter_counter);
-#endif
-#ifdef HYPISQ_FORCE_FILTER_COUNTER
-      printf("hypisq_force_filter_counter = %d\n",hypisq_force_filter_counter);
 #endif
     }
     fflush(stdout);

@@ -13,25 +13,25 @@
 #include "../include/imp_ferm_links.h"
 
 void 
-shift_field_cpu(int dir, enum shift_dir fb, su3_vector *dest, su3_vector *src, 
-		su3_matrix *links)
+shift_field_cpu(int dir, enum shift_dir fb, su3_vector *dest, const su3_vector *const src,
+		const su3_matrix *const links)
 {
   register int i ;
   register site *s ;
   msg_tag *tag[2] = {NULL, NULL};
   su3_vector *tvec = create_v_field();
 
-  node0_printf("Using CPU shift\n");
+  //node0_printf("Using CPU shift\n");
 
   if(fb == SHIFT_FORWARD || fb == SHIFT_SYMMETRIC)
-    tag[0] = start_gather_field( src, sizeof(su3_vector), dir, EVENANDODD, gen_pt[0] );
+    tag[0] = start_gather_field( (void *)src, sizeof(su3_vector), dir, EVENANDODD, gen_pt[0] );
   
   if(fb == SHIFT_BACKWARD || fb == SHIFT_SYMMETRIC){
     FORALLFIELDSITES(i)
     {
       mult_adj_su3_mat_vec( links+4*i+dir, src+i, tvec+i ) ;
     }
-    tag[1] = start_gather_field(tvec, sizeof(su3_vector), OPP_DIR(dir), 
+    tag[1] = start_gather_field((void *)tvec, sizeof(su3_vector), OPP_DIR(dir), 
 				EVENANDODD, gen_pt[1] );
   }
   
@@ -72,8 +72,8 @@ shift_field_cpu(int dir, enum shift_dir fb, su3_vector *dest, su3_vector *src,
 #if defined(HAVE_QUDA) && defined(USE_SHIFT_GPU)
 #include <quda_milc_interface.h>
 void 
-shift_field(int dir, enum shift_dir fb, su3_vector *dest, su3_vector *src, 
-	    su3_matrix *links)
+shift_field(int dir, enum shift_dir fb, su3_vector *dest, const su3_vector *const src,
+	    const su3_matrix *const links, int *refresh_links)
 {
   int quda_precision = MILC_PRECISION;
   int sym = 0;
@@ -87,20 +87,23 @@ shift_field(int dir, enum shift_dir fb, su3_vector *dest, su3_vector *src,
   case SHIFT_BACKWARD:
     sym = 2;
     break;
+
+
   case SHIFT_SYMMETRIC:
     sym = 3;
     break;
   }
 
-  qudaShift(MILC_PRECISION, quda_precision, links, src, dest, dir, sym);
+  qudaShift(MILC_PRECISION, quda_precision, links, src, dest, dir, sym, *refresh_links);
+  *refresh_links = 0;
 }
 
 #else
 
 /* CPU version */
 void 
-shift_field(int dir, enum shift_dir fb, su3_vector *dest, su3_vector *src, 
-		su3_matrix *links)
+shift_field(int dir, enum shift_dir fb, su3_vector *dest, const su3_vector *const src,
+	    const su3_matrix *const links, int *refresh_links)
 {
   shift_field_cpu(dir, fb, dest, src, links);
 }

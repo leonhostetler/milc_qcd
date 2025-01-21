@@ -25,6 +25,7 @@
 #include "../include/su3.h"
 #include "../include/complex.h"
 #include "../include/macros.h"
+#include "../include/unistd.h"
 
 /* arguments to the make_gather() routine */
 #define FORWARDS         1
@@ -144,7 +145,7 @@ msg_tag * declare_gather_field(
   char ** dest);	/* one of the vectors of pointers */
 
 msg_tag * declare_strided_gather(
-  void *field,	        /* source buffer aligned to desired field */
+  const void * const field,            /* source buffer aligned to desired field */
   size_t stride,        /* bytes between fields in source buffer */
   size_t size,		/* size in bytes of the field (eg sizeof(su3_vector))*/
   int index,		/* direction to gather from. eg XUP - index into
@@ -154,7 +155,7 @@ msg_tag * declare_strided_gather(
   char ** dest);	/* one of the vectors of pointers */
 
 msg_tag * start_gather_field(
-  void * field,		/* which field? pointer returned by malloc() */
+  const void * const field,	/* which field? pointer returned by malloc() */
   size_t size,		/* size in bytes of the field (eg sizeof(su3_vector))*/
   int index,		/* direction to gather from. eg XUP - index into
 			   neighbor tables */

@@ -148,7 +148,7 @@ EXTERN	int Maxr0Iter;	/* max  Rayleigh iterations for h(-r0) */
 EXTERN	int Restart;	/* Restart  Rayleigh every so many iterations */
 EXTERN	int Kiters;	/* Kalkreuter iterations */
 EXTERN  wilson_vector  **eigVec0, **eigVec;
-EXTERN  double *eigVal0, *eigVal;
+EXTERN  Real *eigVal0, *eigVal;
 EXTERN  Real eigValcut;
 #endif
 
@@ -241,6 +241,7 @@ EXTERN Real boundary_phase[4];
 EXTERN site *lattice;
 
 EXTERN su3_matrix *ape_links;
+EXTERN int refresh_ape_links;
 
 /* Vectors for addressing */
 /* Generic pointers, for gather routines */
