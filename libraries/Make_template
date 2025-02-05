@@ -43,7 +43,7 @@ COMPLEXOBJS2 = cadd.2.o cdiv.2.o ce_itheta.2.o cexp.2.o clog.2.o cmplx.2.o cmul.
 ${COMPLEXOBJS1} : ${HEADERS} ${ALLMAKES} ${LASTMAKE}
 ${COMPLEXOBJS2} : ${HEADERS} ${ALLMAKES} ${LASTMAKE}
 
-MISCOBJS = crc32.o
+MISCOBJS =
 
 complex.1.a: ${COMPLEXOBJS1} ${MISCOBJS}
 	${AR} rcs $@ ${COMPLEXOBJS1} ${MISCOBJS}
