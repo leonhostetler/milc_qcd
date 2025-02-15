@@ -32,9 +32,14 @@ MY_OBJECTS= \
   control.o \
   gauge_info.o \
   staple.o \
-  integrate.o \
   fmunu.o \
   setup.o
+
+ifeq ($(strip ${HAVE_QUDA}),true)
+  MY_OBJECTS += integrate_quda.o
+else
+  MY_OBJECTS += integrate.o
+endif
 
 G_OBJECTS = \
   check_unitarity.o \

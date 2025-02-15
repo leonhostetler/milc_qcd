@@ -49,7 +49,11 @@ main( int argc, char **argv )
     dtimec = -dclock();
 
     /* integrate the flow */
+#if defined(HAVE_QUDA)
+    run_gradient_flow_quda();
+#else
     run_gradient_flow();
+#endif
 
     /* Save lattice if requested */
     if( saveflag != FORGET )
