@@ -62,6 +62,10 @@ ifeq ($(strip ${HAVEQIO}),true)
   G_OBJECTS += file_types_milc_usqcd.o io_scidac.o io_scidac_types.o
 endif
 
+ifeq ($(strip ${HAVE_QUDA}),true)
+  G_OBJECTS += milc_to_quda_utilities.o
+endif
+
 # Objects depending on architecture and software package
 
 LAYOUT = layout_hyper_prime.o # Choices possible here
