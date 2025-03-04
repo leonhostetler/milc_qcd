@@ -68,7 +68,17 @@ int pad_size = 0;
   smearParams.n_steps = stoptime / stepsize;
   smearParams.epsilon = stepsize;
   smearParams.meas_interval = 1;
-  smearParams.smear_type = QUDA_GAUGE_SMEAR_WILSON_FLOW;
+  if( strcmp("wilson", flow_description) == 0 ) {
+    smearParams.smear_type = QUDA_GAUGE_SMEAR_WILSON_FLOW;
+  }
+  else if( strcmp("symanzik", flow_description) == 0 ) {
+    smearParams.smear_type = QUDA_GAUGE_SMEAR_SYMANZIK_FLOW;
+  }
+  else {
+    node0_printf("ERROR: flow_description %s is invalid for QUDA flow\n",
+           flow_description);
+    terminate(1);
+  }
   smearParams.restart = QUDA_BOOLEAN_FALSE; // ???
   smearParams.t0 = 0; // ???
 
