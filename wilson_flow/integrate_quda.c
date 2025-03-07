@@ -4,6 +4,7 @@
 #include "../include/macros.h"
 #include "lattice.h"
 #include <quda_milc_interface.h>
+#include "../include/generic_quda.h"
 
 
 void
@@ -15,7 +16,7 @@ run_gradient_flow_quda() {
   initialize_quda();
 
   /* Get gauge field */
-  su3_matrix *links = create_G_from_site();
+  su3_matrix *links = create_G_from_site_quda();
 
   /* Setup QUDA gauge parameters */
   QudaGaugeParam qgp = newQudaGaugeParam();
@@ -100,4 +101,9 @@ int pad_size = 0;
 
   /* Do the gauge flow */
   performWFlowQuda(&smearParams, obsParams);
+
+  /* Clean up */
+  destroy_G_quda(links);
+  free(obsParams);
+
 }
