@@ -53,20 +53,19 @@ int pad_size = 0;
   pad_size = MAX(x_face_size, y_face_size);
   pad_size = MAX(pad_size, z_face_size);
   pad_size = MAX(pad_size, t_face_size);
-  int fat_pad = pad_size;
-  int link_pad = 3*pad_size;
   
-  qgp.ga_pad = fat_pad; 
+  qgp.ga_pad = pad_size; 
   qgp.mom_ga_pad = 0;
 
   /* Prepare for rectangle calculation */
   int trace_loop_length[] = {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
   double trace_loop_coeff_d[] = {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
 
-  // The rectangle paths need to be reordered to the 6 spatial ones are first
-  int trace_path[12][6] = {{0, 0, 1, 7, 7, 6},{0, 1, 1, 7, 6, 6},{0, 0, 2, 7, 7, 5},{0, 2, 2, 7, 5, 5},
-	  		   {0, 0, 3, 7, 7, 4},{0, 3, 3, 7, 4, 4},{1, 1, 2, 6, 6, 5},{1, 2, 2, 6, 5, 5},
-			   {1, 1, 3, 6, 6, 4},{1, 3, 3, 6, 4, 4},{2, 2, 3, 5, 5, 4},{2, 3, 3, 5, 4, 4}};
+  /* Rectangle paths ordered with spatial ones first */
+  int trace_path[12][6] = {{0, 0, 1, 7, 7, 6},{0, 1, 1, 7, 6, 6},{0, 0, 2, 7, 7, 5},
+	                   {0, 2, 2, 7, 5, 5},{1, 1, 2, 6, 6, 5},{1, 2, 2, 6, 5, 5},
+	                   {0, 0, 3, 7, 7, 4},{0, 3, 3, 7, 4, 4},{1, 1, 3, 6, 6, 4},
+	                   {1, 3, 3, 6, 4, 4},{2, 2, 3, 5, 5, 4},{2, 3, 3, 5, 4, 4}};
 
   double *trace_loop_coeff_p = &trace_loop_coeff_d[0];
   int *trace_loop_length_p = &trace_loop_length[0];
