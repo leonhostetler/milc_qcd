@@ -83,6 +83,8 @@ main( int argc, char **argv )
   node0_printf("Time = %e seconds\n", dtime);
   fflush(stdout);
   
+  free_lattice();
+  
 #ifdef HAVE_QUDA
   finalize_quda();
 #endif
