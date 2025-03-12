@@ -131,7 +131,14 @@ int pad_size = 0;
   }
 
   /* Do the gauge flow */
+#if GF_INTEGRATOR==INTEGRATOR_LUSCHER
   performWFlowQuda(&smearParams, obsParams);
+#elif GF_INTEGRATOR==INTEGRATOR_BBB
+  performWFlowFourthOrderQuda(&smearParams, obsParams);
+#else
+  printf( "run_gradient_flow_quda: unsupported integrator for QUDA\n");
+  fflush(stdout); terminate(1);
+#endif
 
   /* Clean up */
   destroy_G_quda(links);
