@@ -13,6 +13,11 @@
 #include "../include/io_scidac.h"
 #endif
 
+#ifdef HAVE_QUDA
+#include <quda_milc_interface.h>
+#include "../include/generic_quda.h"
+#endif
+
 #ifdef DEBUG_FIELDS
 void dump_double_lattice();
 #endif
@@ -77,6 +82,10 @@ main( int argc, char **argv )
   dtime += dclock();
   node0_printf("Time = %e seconds\n", dtime);
   fflush(stdout);
+  
+#ifdef HAVE_QUDA
+  finalize_quda();
+#endif
 
   normal_exit(0);
   return 0;
