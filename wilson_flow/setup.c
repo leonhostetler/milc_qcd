@@ -116,6 +116,11 @@ readin(int prompt)
     IF_OK status += ask_starting_lattice(stdin,  prompt, &(par_buf.startflag),
                                          par_buf.startfile);
 
+    if( par_buf.startflag == WARM ) {
+      node0_printf( "ERROR: warm lattices are not supported by this application\n" );
+      terminate(1);
+    }
+
     /* Get flow parameters */
     IF_OK {
       /* Get flow description */
