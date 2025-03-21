@@ -1,8 +1,7 @@
 /************************* integrate_quda.c **********************/
 /* Wilson flow with QUDA */
 
-#include "../include/macros.h"
-#include "lattice.h"
+#include "wilson_flow_includes.h"
 #include <quda_milc_interface.h>
 #include "../include/generic_quda.h"
 
